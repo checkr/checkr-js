@@ -30,8 +30,8 @@ var candidateData = {
 ```
 
 ```javascript
-Checkr.candidate.create(candidateData, function (response) {
-  console.log("status: " + response.status);
+Checkr.candidate.create(candidateData, function (status, response) {
+  console.log("status: " + status);
 
   if (response.error) {
     var errorMessage = response.error;
