@@ -12,7 +12,8 @@ $(function () {
       ssn: $('#ssn').val(),
       email: $('#email').val(),
       phone: $('#phone').val(),
-      dob: $('#dob').val()
+      dob: $('#dob').val(),
+      zipcode: $('#zipcode').val()
     };
 
     // create candidate
@@ -25,7 +26,7 @@ $(function () {
   $('#candidate-populate').click(function () {
     $(this).attr("disabled", true);
 
-    var fields = ['firstName', 'middleName', 'lastName', 'ssn', 'email', 'phone', 'dob'];
+    var fields = ['firstName', 'middleName', 'lastName', 'ssn', 'email', 'phone', 'dob', 'zipcode'];
     for (var i in fields) {
       var field = $('#' + fields[i]);
       field.val(field.attr('placeholder'));
