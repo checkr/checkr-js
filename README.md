@@ -5,7 +5,7 @@ Checkr.js makes it easy to collect sensitive personal data without having the in
 
 #### Including Checkr.js
 ```html
-<script type="text/javascript" src="https://js.checkr.io/checkr-1.0.min.js"></script>
+<script type="text/javascript" src="https://js.checkr.com/checkr-1.0.min.js"></script>
 ```
 
 #### Setting your publishable key
@@ -36,11 +36,11 @@ Checkr.candidate.create(candidateData, function (status, response) {
   if (response.error) {
     var errorMessage = response.error;
     console.log(errorMessage);
-    
+
     // your logic
   } else {
     var candidate_id = response.candidate_id;
-    
+
     // your logic
   }
 });
@@ -52,17 +52,17 @@ Checks whether or not an SSN is valid
 ```javascript
 Checkr.candidate.isSSNValid("111-11-1111") // true
 Checkr.candidate.isSSNValid("111-1111-1111") // false
-``` 
+```
 ##### Checkr.candidate.isEmailValid
 Checks whether or not an email is valid
 ```javascript
 Checkr.candidate.isEmailValid("john@smith.org") // true
 Checkr.candidate.isEmailValid("john.com") // false
-``` 
+```
 
 ##### Checkr.candidate.isPhoneValid
 Checks whether or not a phone number is valid
 ```javascript
 Checkr.candidate.isPhoneValid("3101111111") // true
 Checkr.candidate.isPhoneValid("31011111") // false
-``` 
+```
