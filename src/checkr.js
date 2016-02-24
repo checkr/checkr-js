@@ -33,7 +33,7 @@ var Checkr = {
   makeUrl: function(path, data) {
     return Checkr.rootUrl + path + "?callback={callback}&publishable_key=" +
       encodeURIComponent(Checkr.publishableKey) + "&data=" +
-      encodeURIComponent(JSON.stringify(data));
+        encodeURIComponent(JSON.stringify(data));
   },
 
   isValidPublishableKey: function() {
@@ -93,6 +93,14 @@ var Checkr = {
       return (/^[^@<\s>]+@[^@<\s>]+$/.test(email));
     },
 
+    isMiddleNameEmpty: function(middleName) {
+      return !middleName || !(/\w{1,}/.test(middleName));
+    },
+
+    isMiddleNameValid: function(middleName, noMiddleName) {
+      return noMiddleName != this.isMiddleNameEmpty();
+    },
+
     validate: function (candidateData) {
       var requiredKeys = ['first_name', 'last_name', 'dob', 'ssn', 'email', 'phone'];
       var errors = [];
@@ -118,6 +126,9 @@ var Checkr = {
       }
       if(!this.isEmailValid(candidateData.email)){
         errors.push('invalid email');
+      }
+      if(!this.isMiddleNameValid(candidateData.middle_name, candidateData.no_middle_name)){
+        errors.push('invalid middle name');
       }
 
       return errors;

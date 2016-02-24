@@ -6,14 +6,15 @@ $(function () {
     $('#response').hide();
 
     var payload = {
-      first_name: $("#firstName").val(),
-      middle_name: $("#middleName").val(),
-      last_name: $('#lastName').val(),
-      ssn: $('#ssn').val(),
-      email: $('#email').val(),
-      phone: $('#phone').val(),
-      dob: $('#dob').val(),
-      zipcode: $('#zipcode').val()
+      first_name:     $("#firstName").val(),
+      middle_name:    $("#middleName").val(),
+      no_middle_name: $("#noMiddleName").prop('checked'),
+      last_name:      $('#lastName').val(),
+      ssn:            $('#ssn').val(),
+      email:          $('#email').val(),
+      phone:          $('#phone').val(),
+      dob:            $('#dob').val(),
+      zipcode:        $('#zipcode').val()
     };
 
     // create candidate
