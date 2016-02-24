@@ -1,5 +1,5 @@
 var Checkr = {
-  rootUrl: 'https://api.checkr.io',
+  rootUrl: 'https://api.checkr.com',
   timeout: 30000,
   publishableKey: null,
   setPublishableKey: function(key) {
