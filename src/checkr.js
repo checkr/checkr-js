@@ -26,10 +26,6 @@ var Checkr = {
     };
   },
 
-  trim: function(str) {
-    return str.replace(/^\s+|\s+$/g, '');
-  },
-
   makeUrl: function(path, data) {
     return Checkr.rootUrl + path + "?callback={callback}&publishable_key=" +
       encodeURIComponent(Checkr.publishableKey) + "&data=" +
