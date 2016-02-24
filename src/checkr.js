@@ -18,7 +18,7 @@ var Checkr = {
       try {
         callback(status, result);
       } catch(e) {
-        if(typeof console !== 'undefined' && console.error) {
+        if (typeof console !== 'undefined' && console.error) {
           console.error(e);
         }
       }
@@ -33,7 +33,7 @@ var Checkr = {
   makeUrl: function(path, data) {
     return Checkr.rootUrl + path + "?callback={callback}&publishable_key=" +
       encodeURIComponent(Checkr.publishableKey) + "&data=" +
-        encodeURIComponent(JSON.stringify(data));
+      encodeURIComponent(JSON.stringify(data));
   },
 
   isValidPublishableKey: function() {
@@ -46,11 +46,11 @@ var Checkr = {
     var calledBack = false;
 
     function ret(data) {
-      if(calledBack) { return; }
+      if (calledBack) { return; }
 
       calledBack = true;
 
-      if(!data) {
+      if (!data) {
         callback(500, {
           error: "Unable to connect to the Checkr servers"
         });
@@ -112,22 +112,22 @@ var Checkr = {
         }
       }
 
-      if(!this.isSSNValid(candidateData.ssn)){
+      if (!this.isSSNValid(candidateData.ssn)) {
         errors.push('invalid ssn');
       }
-      if(!this.isFirstNameValid(candidateData.first_name)){
+      if (!this.isFirstNameValid(candidateData.first_name)) {
         errors.push('invalid first name');
       }
-      if(!this.isLastNameValid(candidateData.last_name)){
+      if (!this.isLastNameValid(candidateData.last_name)) {
         errors.push('invalid last name');
       }
-      if(!this.isPhoneValid(candidateData.phone)){
+      if (!this.isPhoneValid(candidateData.phone)) {
         errors.push('invalid phone');
       }
-      if(!this.isEmailValid(candidateData.email)){
+      if (!this.isEmailValid(candidateData.email)) {
         errors.push('invalid email');
       }
-      if(!this.isMiddleNameValid(candidateData.middle_name, candidateData.no_middle_name)){
+      if (!this.isMiddleNameValid(candidateData.middle_name, candidateData.no_middle_name)) {
         errors.push('invalid middle name');
       }
 
@@ -150,9 +150,7 @@ var Checkr = {
       var errors = this.validate(data);
 
       if (errors.length > 0) {
-        callback(400, {
-          error: errors.join(", "),
-        });
+        callback(400, { error: errors.join(", ") });
       } else {
         Checkr.jsonp(Checkr.makeUrl('/jsonp/candidates', data), Checkr.makeCallback(callback));
       }
