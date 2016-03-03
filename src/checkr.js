@@ -94,7 +94,11 @@ var Checkr = {
     },
 
     isMiddleNameValid: function(middleName, noMiddleName) {
-      return noMiddleName != this.isMiddleNameEmpty();
+      if (noMiddleName) {
+        return this.isMiddleNameEmpty(middleName) === true;
+      } else {
+        return this.isMiddleNameEmpty(middleName) === false;
+      }
     },
 
     validate: function (candidateData) {
