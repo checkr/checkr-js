@@ -6,61 +6,29 @@ var Checkr = {
     this.publishableKey = key;
   },
 
-  jsonp: function(path, callback) {
-    var funct = "checkr_jsonp_" + Math.random().toString().substr(2);
-    var tag = document.createElement('script');
-    tag.type = 'text/javascript';
-    tag.async = true;
-    tag.src = path.replace('{callback}', funct);
-    var where = document.getElementsByTagName('script')[0];
-    where.parentNode.insertBefore(tag, where);
-    window[funct] = function(status, result) {
+  post: function(path, data, callback) {
+    var xhr = new XMLHttpRequest();
+    var url = Checkr.rootUrl + path;
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.setRequestHeader('Authorization', 'Basic ' + btoa(Checkr.publishableKey));
+    xhr.onreadystatechange = function () {
       try {
-        callback(status, result);
-      } catch(e) {
-        if (typeof console !== 'undefined' && console.error) {
-          console.error(e);
-        }
+        var jsonResponse = JSON.parse(xhr.responseText);
+      } catch (e) {
+        var jsonResponse = { text: xhr.responseText };
       }
-      tag.parentNode.removeChild(tag);
-    };
-  },
 
-  makeUrl: function(path, data) {
-    return Checkr.rootUrl + path + "?callback={callback}&publishable_key=" +
-      encodeURIComponent(Checkr.publishableKey) + "&data=" +
-      encodeURIComponent(JSON.stringify(data));
+      callback(xhr.status, jsonResponse);
+    };
+    var dataJSONString = JSON.stringify(data);
+    xhr.send(dataJSONString);
   },
 
   isValidPublishableKey: function() {
-    if (!this.publishableKey || typeof this.publishableKey != "string") return false;
+    if (!this.publishableKey || typeof this.publishableKey != 'string') return false;
     if (/\s/g.test(this.publishableKey)) return false;
     return true;
-  },
-
-  makeCallback: function(callback) {
-    var calledBack = false;
-
-    function ret(data) {
-      if (calledBack) { return; }
-
-      calledBack = true;
-
-      if (!data) {
-        callback(500, {
-          error: "Unable to connect to the Checkr servers"
-        });
-        return;
-      }
-
-      var hash = JSON.parse(data);
-      var status = hash.status;
-      delete hash.status
-      callback(status, hash);
-    }
-
-    setTimeout(ret, Checkr.timeout);
-    return ret;
   },
 
   candidate: {
@@ -150,9 +118,9 @@ var Checkr = {
       var errors = this.validate(data);
 
       if (errors.length > 0) {
-        callback(400, { error: errors.join(", ") });
+        callback(400, { error: errors.join(', ') });
       } else {
-        Checkr.jsonp(Checkr.makeUrl('/jsonp/candidates', data), Checkr.makeCallback(callback));
+        Checkr.post('/js/candidates', data, callback);
       }
     }
   },

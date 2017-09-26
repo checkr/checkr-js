@@ -19,7 +19,8 @@ $(function () {
 
     // create candidate
     Checkr.candidate.create(payload, function (status, response) {
-      $('#response pre').html(JSON.stringify(response, false, 4));
+      text = 'status:\n' + status + '\n\nresponse:\n' + JSON.stringify(response, false, 4)
+      $('#response pre').html(text);
       $('#response').show();
     });
   });
