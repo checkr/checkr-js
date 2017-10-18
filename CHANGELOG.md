@@ -1,3 +1,7 @@
+# v2.0
+Breaking changes:
+- Removed JSONP and use regular POST /js/candidates
+
 # v1.1
 
 Breaking changes:
