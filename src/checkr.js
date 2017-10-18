@@ -10,7 +10,8 @@ var Checkr = {
     var xhr = new XMLHttpRequest();
     var url = Checkr.rootUrl + path;
     xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-User-Agent', 'Checkr.2.0.0.js');
     xhr.setRequestHeader('Authorization', 'Basic ' + btoa(Checkr.publishableKey));
     xhr.onreadystatechange = function () {
       try {
@@ -97,6 +98,10 @@ var Checkr = {
     },
 
     create: function (data, callback) {
+      if (!Checkr.publishableKey) {
+        throw new Error('No Publishable Key set. Use Checkr.setPublishableKey("YOUR_KEY_HERE").')
+      }
+
       if (!data) {
         var message = 'No data supplied';
 
