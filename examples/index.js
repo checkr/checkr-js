@@ -6,9 +6,9 @@ $(function () {
     $('#response').hide();
 
     var payload = {
-      first_name:     $("#firstName").val(),
-      middle_name:    $("#middleName").val(),
-      no_middle_name: $("#noMiddleName").prop('checked'),
+      first_name:     $('#firstName').val(),
+      middle_name:    $('#middleName').val(),
+      no_middle_name: $('#noMiddleName').prop('checked'),
       last_name:      $('#lastName').val(),
       ssn:            $('#ssn').val(),
       email:          $('#email').val(),
@@ -26,7 +26,7 @@ $(function () {
   });
 
   $('#candidate-populate').click(function () {
-    $(this).attr("disabled", true);
+    $(this).attr('disabled', true);
 
     var fields = ['firstName', 'middleName', 'lastName', 'ssn', 'email', 'phone', 'dob', 'zipcode'];
     for (var i in fields) {

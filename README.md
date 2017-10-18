@@ -5,7 +5,7 @@ Checkr.js makes it easy to collect sensitive personal data without having the in
 
 #### Including Checkr.js
 ```html
-<script type="text/javascript" src="https://js.checkr.com/checkr-2.0.min.js"></script>
+<script type="text/javascript" src="https://js.checkr.com/checkr-2.0.0.min.js"></script>
 ```
 
 #### Setting your publishable key

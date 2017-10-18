@@ -25,12 +25,6 @@ var Checkr = {
     xhr.send(dataJSONString);
   },
 
-  isValidPublishableKey: function() {
-    if (!this.publishableKey || typeof this.publishableKey != 'string') return false;
-    if (/\s/g.test(this.publishableKey)) return false;
-    return true;
-  },
-
   candidate: {
     isSSNValid: function(ssn) {
       if (!ssn) return false;
